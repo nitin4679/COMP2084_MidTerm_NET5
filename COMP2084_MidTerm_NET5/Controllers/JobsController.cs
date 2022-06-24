@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using COMP2084_MidTerm_NET5.Data;
 using COMP2084_MidTerm_NET5.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace COMP2084_MidTerm_NET5.Controllers
 {
@@ -40,7 +41,7 @@ namespace COMP2084_MidTerm_NET5.Controllers
                 return NotFound();
             }
 
-            var cands = _context.Candidate.Where(c => c.JobId == job.Id);
+            var cands = _context.Candidate.Where(c => c.JobId == job.Id).OrderBy(sector => sector.Job.Sector);
 
             var jobViewModel = new JobViewModel()
             {
@@ -53,6 +54,7 @@ namespace COMP2084_MidTerm_NET5.Controllers
             return View(jobViewModel);
         }
 
+        [Authorize]
         // GET: Jobs/Create
         public IActionResult Create()
         {
@@ -75,6 +77,7 @@ namespace COMP2084_MidTerm_NET5.Controllers
             return View(job);
         }
 
+        [Authorize]
         // GET: Jobs/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {

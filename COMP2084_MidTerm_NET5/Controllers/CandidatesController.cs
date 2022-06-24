@@ -22,7 +22,7 @@ namespace COMP2084_MidTerm_NET5.Controllers
         // GET: Candidates
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Candidate.Include(c => c.Job);
+            var applicationDbContext = _context.Candidate.Include(c => c.Job).OrderBy(LastName => LastName.LastName);
             return View(await applicationDbContext.ToListAsync());
         }
 
