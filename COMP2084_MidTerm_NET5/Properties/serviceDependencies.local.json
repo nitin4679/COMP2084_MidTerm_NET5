@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "secrets1": {
+      "type": "secrets.user"
+    },
+    "mssql1": {
+      "secretStore": "LocalSecretsFile",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/comp2084-srv-midterm/databases/COMP2084_DB_MidTerm",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:MidTermDB"
+    }
+  }
+}
